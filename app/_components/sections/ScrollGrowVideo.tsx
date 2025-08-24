@@ -98,15 +98,15 @@ export default function ScrollGrowVideo({
   }, [startWidthVw, startHeightVh]);
 
   return (
-    <section ref={sectionRef} className="relative w-full">
+    <section ref={sectionRef} className="relative w-[98%] flex mx-auto">
       <div
         ref={stickyRef}
-        className="sticky top-0 h-screen w-full overflow-visible"
+        className="sticky top-0 h-screen w-[99%] overflow-visible"
       >
         <div ref={frameRef} className="relative">
           <video
             src={src}
-            className="w-[99%] h-full object-cover rounded-xl"
+            className="w-[96%] h-full object-cover rounded-xl ml-auto mr-auto"
             playsInline
             muted
             autoPlay
