@@ -1,0 +1,129 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
+type Props = {
+  src: string;
+  // starting size as a fraction of viewport
+  startWidthVw?: number; // e.g., 60 means 60vw
+  startHeightVh?: number; // e.g., 34 means 34vh
+};
+
+export default function ScrollGrowVideo({
+  src,
+  startWidthVw = 10,
+  startHeightVh = 30,
+}: Props) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+
+  // Helper: clamp a value
+  const clamp = (v: number, min: number, max: number) =>
+    Math.min(max, Math.max(min, v));
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const sticky = stickyRef.current;
+    const frame = frameRef.current;
+    if (!section || !sticky || !frame) return;
+
+    // Section tall enough to scroll through growth
+    section.style.height = "200vh";
+
+    // Initial position + size
+    gsap.set(frame, {
+      width: `${startWidthVw}vw`,
+      height: `${startHeightVh}vh`,
+      xPercent: -50,
+      yPercent: -50,
+      left: "50%",
+      top: "50%",
+      position: "absolute",
+    });
+
+    let rafId = 0;
+
+    const onScroll = () => {
+      if (!section || !sticky || !frame) return;
+
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      // Progress: 0 → 1 over one viewport height
+      const total = vh;
+      const current = clamp(vh - Math.max(0, rect.top), 0, total);
+      const t = clamp(current / total, 0, 1);
+
+      // Height interpolation
+      const heightVh = startHeightVh + t * (100 - startHeightVh);
+
+      // Width interpolation
+      const midPoint = 0.5; // Point at which width reaches its maximum
+      let widthVw: number;
+      if (t < midPoint) {
+        // From start to middle: grow from startWidthVw to 90vw
+        const progress = t / midPoint; // 0 to 1 during first half
+        widthVw = startWidthVw + progress * (90 - startWidthVw);
+      } else {
+        // From middle to end: grow from 90vw to 100vw
+        const progress = (t - midPoint) / (1 - midPoint); // 0 to 1 during second half
+        widthVw = 90 + progress * 10;
+      }
+
+      gsap.to(frame, {
+        width: `${widthVw}vw`,
+        height: `${heightVh}vh`,
+        duration: 0.15,
+        ease: "power2.out",
+      });
+    };
+
+    const onResize = () => onScroll();
+
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        onScroll();
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
+
+    // Initial run
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [startWidthVw, startHeightVh]);
+
+  return (
+    <section ref={sectionRef} className="relative w-full">
+      {/* Sticky container */}
+      <div
+        ref={stickyRef}
+        className="sticky top-0 h-screen w-full overflow-visible"
+      >
+        {/* Resizable frame */}
+        <div ref={frameRef} className="relative">
+          <video
+            src={src}
+            className="w-[99%] h-full object-cover rounded-xl"
+            playsInline
+            muted
+            autoPlay
+            loop
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
