@@ -7,7 +7,6 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Prevent layout shift by setting initial position off-screen
     gsap.set(cursorRef.current, { xPercent: -50, yPercent: -50, x: -9999, y: -9999 });
 
     const move = (e: MouseEvent) => {

@@ -21,13 +21,11 @@ const AnnouncementBar = ({
 
   useEffect(() => {
     if (textRef.current) {
-      // Set initial state - simple fade up animation matching the original
       gsap.set(textRef.current, {
         opacity: 0,
         y: 20
       });
 
-      // Simple fade up animation like the original
       gsap.to(textRef.current, {
         opacity: 1,
         y: 0,
@@ -69,14 +67,3 @@ const AnnouncementBar = ({
 
 export default AnnouncementBar;
 
-// CSS for shimmer animation (add to your global CSS or Tailwind config)
-/*
-@keyframes shimmer {
-  0% {
-    background-position: -200% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-*/

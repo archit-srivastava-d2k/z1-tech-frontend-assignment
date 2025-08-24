@@ -5,9 +5,8 @@ import gsap from "gsap";
 
 type Props = {
   src: string;
-  // starting size as a fraction of viewport
-  startWidthVw?: number; // e.g., 60 means 60vw
-  startHeightVh?: number; // e.g., 34 means 34vh
+  startWidthVw?: number; 
+  startHeightVh?: number;
 };
 
 export default function ScrollGrowVideo({
@@ -29,10 +28,8 @@ export default function ScrollGrowVideo({
     const frame = frameRef.current;
     if (!section || !sticky || !frame) return;
 
-    // Section tall enough to scroll through growth
     section.style.height = "200vh";
 
-    // Initial position + size
     gsap.set(frame, {
       width: `${startWidthVw}vw`,
       height: `${startHeightVh}vh`,
@@ -51,24 +48,19 @@ export default function ScrollGrowVideo({
       const rect = section.getBoundingClientRect();
       const vh = window.innerHeight;
 
-      // Progress: 0 → 1 over one viewport height
       const total = vh;
       const current = clamp(vh - Math.max(0, rect.top), 0, total);
       const t = clamp(current / total, 0, 1);
 
-      // Height interpolation
       const heightVh = startHeightVh + t * (100 - startHeightVh);
 
-      // Width interpolation
-      const midPoint = 0.5; // Point at which width reaches its maximum
+      const midPoint = 0.5; 
       let widthVw: number;
       if (t < midPoint) {
-        // From start to middle: grow from startWidthVw to 90vw
-        const progress = t / midPoint; // 0 to 1 during first half
+        const progress = t / midPoint;
         widthVw = startWidthVw + progress * (90 - startWidthVw);
       } else {
-        // From middle to end: grow from 90vw to 100vw
-        const progress = (t - midPoint) / (1 - midPoint); // 0 to 1 during second half
+        const progress = (t - midPoint) / (1 - midPoint); 
         widthVw = 90 + progress * 10;
       }
 
@@ -107,12 +99,10 @@ export default function ScrollGrowVideo({
 
   return (
     <section ref={sectionRef} className="relative w-full">
-      {/* Sticky container */}
       <div
         ref={stickyRef}
         className="sticky top-0 h-screen w-full overflow-visible"
       >
-        {/* Resizable frame */}
         <div ref={frameRef} className="relative">
           <video
             src={src}

@@ -12,7 +12,6 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show navbar after scrolling past hero section
       setIsVisible(window.scrollY > window.innerHeight * 0.5)
     }
 
@@ -35,7 +34,6 @@ export default function Navbar() {
     >
       <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3">
         <div className="flex items-center gap-8">
-          {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             className="text-white font-bold text-xl"
@@ -43,7 +41,6 @@ export default function Navbar() {
             Post Labs
           </motion.div>
 
-          {/* Desktop Navigation */}
           {!isMobile && (
             <div className="flex items-center gap-6">
               <NavLink href="#about">About</NavLink>
@@ -51,7 +48,6 @@ export default function Navbar() {
             </div>
           )}
 
-          {/* Mobile Menu Button */}
           {isMobile && (
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -75,7 +71,6 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile Menu */}
         {isMobile && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}

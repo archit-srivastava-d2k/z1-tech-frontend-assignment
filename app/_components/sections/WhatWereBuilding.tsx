@@ -6,7 +6,6 @@ import gsap from "gsap";
 export default function WhatWereBuilding() {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
-  // Paragraph blocks and their icon wrappers
   const rowRefs = useRef<HTMLDivElement[]>([]);
   const setRow = (i: number) => (el: HTMLDivElement | null) => {
     if (el) rowRefs.current[i] = el;
@@ -27,7 +26,6 @@ export default function WhatWereBuilding() {
   );
 
   useEffect(() => {
-    // 1) Headline: reveal word-by-word when it scrolls into view
     if (headingRef.current) {
       const hIO = new IntersectionObserver(
         (entries) => {
@@ -50,7 +48,6 @@ export default function WhatWereBuilding() {
       hIO.observe(headingRef.current);
     }
 
-    // 2) Prepare paragraph rows and icons
     rowRefs.current.forEach((row) => {
       const words = row.querySelectorAll("[data-word]");
       gsap.set(words, { opacity: 0, y: 14 });
@@ -59,7 +56,6 @@ export default function WhatWereBuilding() {
       gsap.set(wrap, { opacity: 0, y: 6, rotate: -2, scale: 0.98 });
     });
 
-    // 3) Reveal rows on scroll, word-by-word
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -110,7 +106,6 @@ export default function WhatWereBuilding() {
 
   return (
     <section className="relative w-full bg-transparent text-black">
-      {/* Subtle vertical guides */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -122,7 +117,6 @@ export default function WhatWereBuilding() {
       />
 
       <div className="mx-auto max-w-[1200px] px-6 sm:px-8 md:px-10 lg:px-12">
-        {/* Headline: more to the left and split into words */}
         <div className="pt-[12vh] pb-[12vh] md:pt-[15vh] md:pb-[14vh]">
           <h2
             ref={headingRef}
@@ -132,7 +126,7 @@ export default function WhatWereBuilding() {
               fontSize: "144px",
               fontWeight: 400,
               color: "#000000",
-              marginLeft: "-11rem", // adjust if needed
+              marginLeft: "-11rem", 
               letterSpacing: "-0.06em",
             }}
           >
@@ -142,10 +136,7 @@ export default function WhatWereBuilding() {
           </h2>
         </div>
 
-        {/* Content stack with 60vh gaps between sentences */}
-       {/* Content stack with 60vh gaps between sentences */}
 <div className="relative flex flex-col gap-[60vh] pb-[28vh]">
-  {/* Row 1: left */}
   <RowBlock
     index={0}
     align="left"
@@ -156,18 +147,16 @@ export default function WhatWereBuilding() {
     iconPositionClass="-left-[68px] top-[4px]"
   />
 
-  {/* Row 2: push further right */}
   <RowBlock
     index={1}
     align="right"
     text="At its core is PostOS, our made‑in‑Canada publishing engine that connects local voices, communities, and trusted journalism in one seamless digital experience."
     setRow={setRow}
     setIconWrap={setIconWrap}
-    paragraphOffsetClass="mr-[-10%]"  // increased from 5% to 10%
+    paragraphOffsetClass="mr-[-10%]"  
     iconPositionClass="-right-[68px] top-[4px]"
   />
 
-  {/* Row 3: left */}
   <RowBlock
     index={2}
     align="left"
@@ -184,7 +173,6 @@ export default function WhatWereBuilding() {
   );
 }
 
-/* ---------- helpers ---------- */
 
 function Word({ children }: { children: React.ReactNode }) {
   return (
@@ -236,7 +224,6 @@ function RowBlock({
         left ? "justify-start" : "justify-end",
       ].join(" ")}
     >
-      {/* Icon cluster beside paragraph */}
       <div
         ref={setIconWrap(index)}
         className={`absolute ${iconPositionClass}`}
@@ -255,7 +242,6 @@ function RowBlock({
         </div>
       </div>
 
-      {/* Paragraph split into words for on-scroll reveal */}
       <div className={paragraphOffsetClass}>
         <p
           className="max-w-[820px] leading-[1.35]"

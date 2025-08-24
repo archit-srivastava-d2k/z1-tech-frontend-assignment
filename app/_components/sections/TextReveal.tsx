@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 type Props = {
-  text: string; // full sentence/paragraph
+  text: string; 
   start?: string;
   end?: string;
   scrub?: number | boolean;
@@ -31,7 +31,7 @@ export default function TextReveal({
 
     const words = root.querySelectorAll<HTMLSpanElement>('.word');
 
-    gsap.set(words, { opacity: 0.2 }); // start faded
+    gsap.set(words, { opacity: 0.2 });
 
     const tween = gsap.to(words, {
       opacity: 1,

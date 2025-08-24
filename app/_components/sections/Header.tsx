@@ -54,9 +54,7 @@ const Header = ({
 
   return (
     <>
-      {/* Gradient wrapper background */}
       <div className="gradient-wrapper relative overflow-hidden bg-gradient-to-br from-yellow-50 via-yellow-100 to-yellow-200">
-        {/* Floating grid background */}
         <div className="floating-grid absolute inset-0 pointer-events-none">
           <div className="floating-grid-col first absolute top-0 left-0 w-1/4 h-full opacity-5">
             <div className="w-full h-full bg-gradient-to-b from-black/10 to-transparent" />
@@ -72,12 +70,10 @@ const Header = ({
           </div>
         </div>
 
-        {/* Hero glow container */}
         <div className="hero-glow-container absolute inset-0 pointer-events-none">
           <div className="hero-glow absolute -top-48 -right-48 w-96 h-96 bg-yellow-200/30 rounded-full blur-3xl" />
         </div>
 
-        {/* Navigation Bar */}
         <div className="navbar w-full fixed top-12 left-0 z-50 opacity-0">
           <div className="nav-menu-wrapper max-w-7xl mx-auto px-6">
             <nav className="nav-menu flex justify-between items-center" ref={navRef}>
@@ -98,11 +94,9 @@ const Header = ({
           </div>
         </div>
 
-        {/* Main Header */}
         <header className={`header relative z-10 ${className}`}>
           <div className="header-container max-w-7xl mx-auto px-6 py-12">
             <div className=" grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-              {/* Logo Column */}
               <div className="grid-col-1">
                 <Link 
                   href="/" 
@@ -111,7 +105,6 @@ const Header = ({
                   data-animation="fadeup"
                 >
                   <div className="logo flex items-center space-x-2">
-                    {/* SVG Logo - based on the "</> Post Labs" format */}
                     <div className="text-2xl lg:text-3xl font-mono font-bold text-black">
                       &lt;/&gt;
                     </div>
@@ -122,7 +115,6 @@ const Header = ({
                 </Link>
               </div>
 
-              {/* Header Text Column */}
               <div className="grid-col-2">
                 <p 
                   ref={headerTextRef}

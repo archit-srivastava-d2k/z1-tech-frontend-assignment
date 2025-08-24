@@ -13,21 +13,12 @@ export default function InvestorPage() {
   const footerRef = useRef<HTMLDivElement | null>(null);
   const builtRowsRefs = useRef<HTMLDivElement[]>([]);
 
-  /*************  ✨ Windsurf Command ⭐  *************/
-  /**
-   * Sets a row element in the `builtRowsRefs` array at index `i`.
-   * @param {number} i - The index to set in the array.
-   * @param {HTMLDivElement | null} el - The element to set at the given index.
-   * @returns {void}
-   */
-  /*******  858e0a3d-3986-4e71-a06b-23f7686dedc1  *******/
   const setBuiltRow = (i: number) => (el: HTMLDivElement | null) => {
     if (el) builtRowsRefs.current[i] = el;
   };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // --- BuiltForWords Animation ---
       const rows = builtRowsRefs.current;
       if (builtForSectionRef.current && rows.length === 3) {
         gsap.set(rows[0], { opacity: 1, filter: "blur(0px)", y: 0 });
@@ -60,7 +51,6 @@ export default function InvestorPage() {
           .to(rows[2], { opacity: 1, filter: "blur(0px)", duration: 1.5 }, "<");
       }
 
-      // --- Investors Section Animation ---
       const investorsEls = gsap.utils.toArray<HTMLElement>(".investors-text");
       gsap.set(investorsEls, { opacity: 0, y: 50 });
       gsap.to(investorsEls, {
@@ -75,7 +65,6 @@ export default function InvestorPage() {
         },
       });
 
-      // --- Builders Section Animation ---
       const buildersEls = gsap.utils.toArray<HTMLElement>(".builders-text");
       gsap.set(buildersEls, { opacity: 0, y: 50 });
       gsap.to(buildersEls, {
@@ -90,11 +79,9 @@ export default function InvestorPage() {
         },
       });
 
-      // --- Footer Overlay Reveal Animation ---
       if (footerRef.current && buildersSectionRef.current) {
         const footerHeight = footerRef.current.offsetHeight;
 
-        // Spacer to allow scroll
         let spacer = document.querySelector(".footer-spacer") as HTMLDivElement;
         if (!spacer) {
           spacer = document.createElement("div");
@@ -104,7 +91,6 @@ export default function InvestorPage() {
           buildersSectionRef.current.insertAdjacentElement("afterend", spacer);
         }
 
-        // Pin Builders section
         ScrollTrigger.create({
           trigger: buildersSectionRef.current,
           start: "top top",
@@ -113,7 +99,6 @@ export default function InvestorPage() {
           scrub: 1,
         });
 
-        // Footer slide-in reveal
         gsap.set(footerRef.current, { yPercent: 100 });
         gsap.to(footerRef.current, {
           yPercent: 0,
@@ -126,7 +111,6 @@ export default function InvestorPage() {
           },
         });
 
-        // Animate footer content
         const footerElements = gsap.utils.toArray(".footer-content > *");
         gsap.set(footerElements, { opacity: 0, y: 50 });
         gsap.to(footerElements, {
@@ -143,7 +127,6 @@ export default function InvestorPage() {
           },
         });
 
-        // --- Marquee animation for footer headline ---
         const marquee = document.querySelector(
           ".footer-marquee"
         ) as HTMLDivElement;
@@ -176,7 +159,6 @@ export default function InvestorPage() {
         }
       `}</style>
 
-      {/* BuiltForWords Section */}
       <section
         ref={builtForSectionRef}
         className="relative w-full"
@@ -255,7 +237,6 @@ export default function InvestorPage() {
         </div>
       </section>
 
-      {/* Investors Section */}
       <section
         ref={investorsSectionRef}
         className="min-h-screen w-full p-12 flex items-center relative z-10"
@@ -306,7 +287,6 @@ export default function InvestorPage() {
         </div>
       </section>
 
-      {/* Builders Section */}
       <section
         ref={buildersSectionRef}
         className="min-h-screen w-full p-12 flex items-center justify-end text-right relative z-10"
@@ -362,7 +342,6 @@ export default function InvestorPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer
         ref={footerRef}
         className="fixed bottom-0 left-0 w-full h-screen text-white z-0"

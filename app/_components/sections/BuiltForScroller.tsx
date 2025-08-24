@@ -30,10 +30,8 @@ export default function BuiltForWords({
     const rows = rowRefs.current;
     if (!section || rows.length !== 3) return;
 
-    // Section height for scrolling
     section.style.height = "150vh";
 
-    // Initial states
     gsap.set(rows[0], { opacity: 1, filter: "blur(0px)", y: 0 });
     gsap.set(rows[1], { opacity: 0.3, filter: "blur(1px)", y: 0 });
     gsap.set(rows[2], { opacity: 0.3, filter: "blur(1px)", y: 0 });
@@ -43,11 +41,10 @@ export default function BuiltForWords({
         trigger: section,
         start: "top center",
         end: "bottom center",
-        scrub: 0.5, // smooth scroll-based animation
+        scrub: 0.5,
       },
     });
 
-    // Animate Scale → Creators → Canada progressively
     tl.to([rows[0], rows[1], rows[2]], { y: "-1.15em", duration: 1 })
       .to(rows[0], { opacity: 0.3, filter: "blur(1px)", duration: 1 }, "<")
       .to(rows[1], { opacity: 1, filter: "blur(0px)", duration: 1 }, "<")
@@ -63,7 +60,6 @@ export default function BuiltForWords({
   return (
     <section ref={sectionRef} className="relative w-full">
       <div className="sticky top-0 h-screen w-full">
-        {/* Background video */}
         <div className="absolute inset-0">
           <video
             className="w-full h-full object-cover"
@@ -79,10 +75,8 @@ export default function BuiltForWords({
           <div className="absolute inset-0 bg-black/18" />
         </div>
 
-        {/* Content */}
         <div className="relative z-10 h-screen w-full flex items-center justify-center">
           <div className="flex items-center w-full">
-            {/* Left label */}
             <div className="px-6 md:px-12">
               <div
                 ref={builtForRef}
@@ -100,7 +94,6 @@ export default function BuiltForWords({
               </div>
             </div>
 
-            {/* Right words */}
             <div className="flex-1 pr-6 md:pr-12">
               <div
                 className="relative overflow-hidden"

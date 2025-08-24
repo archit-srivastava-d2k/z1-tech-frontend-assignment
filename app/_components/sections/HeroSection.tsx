@@ -51,7 +51,6 @@ function HeroCursor({
     });
   }, [active]);
 
-  // Apply hero-sized dimensions
   const styleSize: React.CSSProperties =
     rect
       ? {
@@ -70,7 +69,7 @@ function HeroCursor({
       'url("https://cdn.prod.website-files.com/681dfdff4444ca819f7050a2/6824ade8d12d0b0ba2ecdae9_pl-gradient.svg")',
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    backgroundSize: "75%", // your requested scale
+    backgroundSize: "75%", 
   }}
 />
 
@@ -92,7 +91,6 @@ const HeroSection = () => {
   };
 
   useEffect(() => {
-    // Headline animation
     gsap.from(headlineRefs.current, {
       opacity: 0,
       y: 50,
@@ -102,7 +100,6 @@ const HeroSection = () => {
       delay: 0.3,
     });
 
-    // Arrow animation
     if (arrowRef.current) {
       gsap.to(arrowRef.current, {
         y: -15,
@@ -114,7 +111,6 @@ const HeroSection = () => {
     }
   }, []);
 
-  // Measure hero size and update on resize
   useEffect(() => {
     const measure = () => {
       if (!heroRef.current) return;
@@ -136,7 +132,6 @@ const HeroSection = () => {
     };
   }, []);
 
-  // Activate only when hero is in view and pointer is over it
   useEffect(() => {
     if (!heroRef.current) return;
     const el = heroRef.current;
@@ -172,7 +167,6 @@ const HeroSection = () => {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-radial from-yellow-300/80 via-transparent to-transparent bg-[circle_at_top_center] cursor-none"
     >
-      {/* Cursor spans the full hero height/width and follows pointer */}
       <HeroCursor active={cursorActive} rect={heroRect} />
 
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
