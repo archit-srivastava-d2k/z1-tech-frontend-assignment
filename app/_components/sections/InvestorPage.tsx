@@ -266,7 +266,7 @@ export default function InvestorPage() {
               lineHeight: "1.5",
             }}
           >
-            We're raising capital to scale fast. If you're an investor who
+            We&apos;re raising capital to scale fast. If you're an investor who
             believes in the future of independent Canadian media, we'd love to
             speak with you.
           </p>
