@@ -37,6 +37,26 @@
   }
 }
 
+/* app/globals.css */
+
+/* Keep your existing Tailwind or other global styles */
+
+/* Lenis recommended styles */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto; /* AVOIDS CONFLICTS */
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
