@@ -12,7 +12,7 @@ interface AnnouncementBarProps {
 }
 
 const AnnouncementBar = ({ 
-  text = "Help shape the future of digital journalism — we're hiring!",
+  text = "Help shape the future of digital journalism — we&apos;re hiring!",
   href = "/careers",
   className = "",
   delay = 0.2

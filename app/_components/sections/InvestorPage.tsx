@@ -317,8 +317,8 @@ export default function InvestorPage() {
               marginLeft: "auto",
             }}
           >
-            We're hiring. If you're passionate about media, technology, and the
-            future of Canada's digital ecosystem, come build with us. We're
+            We&apos;re hiring. If you're passionate about media, technology, and the
+            future of Canada's digital ecosystem, come build with us. We&apos;re
             always looking for great people. Check out our{" "}
             <a href="#" style={{ textDecoration: "underline" }}>
               jobs page

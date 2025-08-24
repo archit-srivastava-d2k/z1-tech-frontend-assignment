@@ -74,15 +74,16 @@ const Header = ({
           <div className="hero-glow absolute -top-48 -right-48 w-96 h-96 bg-yellow-200/30 rounded-full blur-3xl" />
         </div>
 
-        <div className="navbar w-full fixed top-12 left-0 z-50 opacity-0">
-          <div className="nav-menu-wrapper max-w-7xl mx-auto px-6">
+        {/* Mobile and Tablet Responsive Navigation */}
+        <div className="navbar w-full fixed top-4 sm:top-8 lg:top-12 left-0 z-50 opacity-0">
+          <div className="nav-menu-wrapper max-w-7xl mx-auto px-4 sm:px-6">
             <nav className="nav-menu flex justify-between items-center" ref={navRef}>
-              <div className="nav-links flex space-x-8">
+              <div className="nav-links flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-8">
                 {navItems.map((item, index) => (
                   <Link
                     key={index}
                     href={item.href}
-                    className={`nav-link text-white hover:text-yellow-200 transition-colors duration-200 text-sm font-medium ${
+                    className={`nav-link text-white hover:text-yellow-200 transition-colors duration-200 text-xs sm:text-sm font-medium ${
                       item.isActive ? 'w--current border-b border-yellow-200' : ''
                     }`}
                   >
@@ -94,35 +95,40 @@ const Header = ({
           </div>
         </div>
 
+        {/* Responsive Header with Wider Cards */}
         <header className={`header relative z-10 ${className}`}>
-          <div className="header-container max-w-7xl mx-auto px-6 py-12">
-            <div className=" grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-              <div className="grid-col-1">
+          <div className="header-container max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 lg:py-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
+              {/* Logo Card - Wider */}
+              <div className="grid-col-1 w-full">
                 <Link 
                   href="/" 
-                  className="logo-link inline-block"
+                  className="logo-link inline-block w-full"
                   ref={logoRef}
                   data-animation="fadeup"
                 >
-                  <div className="logo flex items-center space-x-2">
-                    <div className="text-2xl lg:text-3xl font-mono font-bold text-black">
+                  <div className="logo flex items-center justify-start sm:justify-start space-x-2 bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-mono font-bold text-black">
                       &lt;/&gt;
                     </div>
-                    <div className="text-2xl lg:text-3xl font-semibold text-black">
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-semibold text-black">
                       PostLabs
                     </div>
                   </div>
                 </Link>
               </div>
 
-              <div className="grid-col-2">
-                <p 
-                  ref={headerTextRef}
-                  className="header-text text-lg lg:text-xl text-black/80 leading-relaxed"
-                  data-animation="fadeup"
-                >
-                  We're building the backbone of Canadian digital media — a next-gen platform that gives creators the tools to thrive.
-                </p>
+              {/* Text Card - Wider */}
+              <div className="grid-col-2 w-full">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-white/20 h-full flex items-center">
+                  <p 
+                    ref={headerTextRef}
+                    className="header-text text-base sm:text-[1rem] lg:text-xl text-black/80 leading-relaxed"
+                    data-animation="fadeup"
+                  >
+                    We&apos;re building the backbone of Canadian digital media — a next-gen platform that gives creators the tools to thrive.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
