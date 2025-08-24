@@ -14,13 +14,11 @@ import InvestorPage from "./_components/sections/InvestorPage";
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-neutral-900">
-      {/* Announcement Bar */}
       <AnnouncementBar />
       <HeroSection />
 
       <CardSection />
 
-      {/* Text Reveal Section */}
       <TextReveal
         text="Post Labs is rethinking how digital media works for Canadians. Our mission is simple: make journalism profitable, sustainable, and trusted – built for Canadians, by Canadians."
         start="top center"
@@ -33,16 +31,10 @@ export default function Home() {
 
       <WhatWereBuilding />
 
-      {/* <BuiltForScroller /> */}
 
       <InvestorPage />
 
-      {/* Spacer just for scroll testing */}
-      <section className="h-[120vh]" />
-
-   
-
-      {/* Rest of your page content */}
+    
     </main>
   );
 }

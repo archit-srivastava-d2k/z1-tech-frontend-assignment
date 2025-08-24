@@ -202,11 +202,11 @@ export default function InvestorPage() {
                   Built for
                 </div>
               </div>
-              <div className="flex-1 pr-6 md:pr-12">
+              <div className="flex-1 pr-6 md:pr-12 mt-44">
                 <div
                   className="relative overflow-hidden"
                   style={{
-                    height: "4.6em",
+                    height: "3.65em",
                     fontSize: "clamp(2.5rem, 8vw, 5rem)",
                   }}
                 >
@@ -348,7 +348,7 @@ export default function InvestorPage() {
         style={{ backgroundColor: "#000000" }}
       >
         <div className="footer-content h-full flex flex-col justify-between p-12">
-          <div className="flex-1 flex items-center justify-center">
+          <div className="flex-1 flex items-center justify-center ">
             <div className="max-w-6xl mx-auto text-center overflow-hidden">
               <h2
                 className="footer-marquee whitespace-nowrap"

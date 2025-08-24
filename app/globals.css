@@ -57,6 +57,7 @@ html.lenis {
 .lenis-scrolling iframe {
   pointer-events: none;
 }
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
