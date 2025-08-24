@@ -266,8 +266,8 @@ export default function InvestorPage() {
               lineHeight: "1.5",
             }}
           >
-            We&apos;re raising capital to scale fast. If you're an investor who
-            believes in the future of independent Canadian media, we'd love to
+            We&apos;re raising capital to scale fast. If you&apos;re an investor who
+            believes in the future of independent Canadian media, we&apos;d love to
             speak with you.
           </p>
           <a
@@ -317,8 +317,8 @@ export default function InvestorPage() {
               marginLeft: "auto",
             }}
           >
-            We&apos;re hiring. If you're passionate about media, technology, and the
-            future of Canada's digital ecosystem, come build with us. We&apos;re
+            We&apos;re hiring. If you&apos;re passionate about media, technology, and the
+            future of Canada&apos;s digital ecosystem, come build with us. We&apos;re
             always looking for great people. Check out our{" "}
             <a href="#" style={{ textDecoration: "underline" }}>
               jobs page
